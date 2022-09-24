@@ -16,8 +16,8 @@ class DB {
         console.log('Connected to database');
     }
 
-    async get() {
-        const [data, t] = await this.connection.query('SELECT * FROM doc');
+    async get(query) {
+        const [data] = await this.connection.query(query);
         return data;
     }
 }

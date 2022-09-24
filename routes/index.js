@@ -4,7 +4,7 @@ const sql = new DB();
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
-  const data = await sql.get();
+  const data = await sql.get('SELECT * FROM doc');
   console.log(data);
   res.status(200).send('Home page!');
 });
