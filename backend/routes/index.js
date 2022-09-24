@@ -2,12 +2,13 @@ const router = require('express').Router();
 const DB = require('../database');
 const sql = new DB();
 const dayjs = require('dayjs');
+const getFile = require('../s3');
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   const data = await sql.query('SELECT * FROM doc');
-  console.log(data);
-  res.status(200).send('Home page!');
+    console.log(data);
+    res.status(200).send('Home page!');
 });
 
 router.get('/data', async (req, res, next) => {
@@ -27,5 +28,12 @@ router.post('/update', async (req, res, next) => {
     else await sql.query(`UPDATE doc SET roomID = ${roomID}, timeLeft = '${dayjs().format('YYYY-MM-DD HH:mm:ss')}' WHERE id = ${docID}`);
     res.json({ success: true});
 });
+
+router.get('/image', async (req, res) => {
+    const fileName = req.query.fileName;
+    if (!fileName) return res.status(400).send('No file name provided');
+    const file = await getFile(fileName);
+    file.pipe(res);
+})
 
 module.exports = router;

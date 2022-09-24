@@ -2,10 +2,12 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const { join } = require('path');
 
 const indexRouter = require('./routes/index');
 require('dotenv').config();
 const app = express();
+app.use(express.static(join(__dirname, '..', 'frontend', 'patient_screen')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -13,8 +15,13 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
+app.get('/patient', (_, res) => res.sendFile(join(__dirname, '..', 'frontend', 'patient_screen', 'index.html')));
+app.get('/employee', (_, res) => res.sendFile(join(__dirname, '..', 'frontend', 'employee', 'index.html')));
+
 app.use('/', indexRouter);
+
 app.use(bodyParser.json());
+
 
 // error handler
 app.use((err, req, res, next) => {
