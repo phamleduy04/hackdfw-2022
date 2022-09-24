@@ -1,20 +1,22 @@
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 require('dotenv').config();
-
 
 const indexRouter = require('./routes/index');
 require('dotenv').config();
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use('/', indexRouter);
+app.use(bodyParser.json());
 
 // error handler
 app.use((err, req, res, next) => {
