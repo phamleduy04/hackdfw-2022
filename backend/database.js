@@ -8,7 +8,8 @@ class DB {
 
     async connect() {
         this.connection = await mysql.createConnection({
-            host: process.env.HOST,
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
             user: process.env.USERNAME,
             password: process.env.PASSWORD,
             database: "hackDFW"
