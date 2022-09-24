@@ -14,7 +14,7 @@ function loadDoctor(roomID, array) {
         const firstDoc = data[0];
         $('body > #docdata > p').append(`Doctor name: ${firstDoc.name}`);
         $('body > #docdata> p1').append(`Doctor ID: ${firstDoc.id}`);
-        $('#doctor-image').prepend(`<img src="${firstDoc.pictureURL}" alt="Doctor image" />`);
+        $('#doctor-image').prepend(`<img src="/image?fileName=${firstDoc.pictureURL}" alt="Doctor image" />`);
         array.push(firstDoc);
         
     });
