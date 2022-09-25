@@ -1,4 +1,4 @@
-FROM node:alpine as compiler
+FROM node:alpine
 
 WORKDIR /home/container
 COPY . .
