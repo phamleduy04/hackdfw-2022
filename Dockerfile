@@ -11,4 +11,4 @@ FROM gcr.io/distroless/nodejs:16
 WORKDIR /home/container
 COPY --from=compiler /home/container ./
 USER 1000
-CMD [npm, start]
+CMD ["npm", "run", "start"]

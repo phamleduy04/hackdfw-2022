@@ -4,7 +4,7 @@ require('dotenv').config();
 class DB {
     constructor() {
         this.connect();
-        setInterval(this.keepAlive, 60000);
+        setInterval(() => this.connection.query('SELECT 1'), 30000);
     }
 
     async connect() {
@@ -24,7 +24,7 @@ class DB {
         return data;
     }
 
-    keepAlive() { 
+    async keepAlive() { 
         this.connection.getConnection((err, connection) => {
             if(err) { console.error('mysql keepAlive err', err); return; }
             connection.ping();
