@@ -7,8 +7,8 @@ const { join } = require('path');
 const indexRouter = require('./routes/index');
 require('dotenv').config();
 const app = express();
-app.use(express.static(join(__dirname, '..', 'frontend', 'patient_screen')));
-app.use(express.static(join(__dirname, '..', 'frontend', 'employee')));
+app.use(express.static(join(__dirname, 'public', 'patient_screen')));
+app.use(express.static(join(__dirname, 'public', 'employee')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -16,8 +16,8 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
-app.get('/patient', (_, res) => res.sendFile(join(__dirname, '..', 'frontend', 'patient_screen', 'patient.html')));
-app.get('/employee', (_, res) => res.sendFile(join(__dirname, '..', 'frontend', 'employee', 'employee.html')));
+app.get('/patient', (_, res) => res.sendFile(join(__dirname, 'public', 'patient_screen', 'patient.html')));
+app.get('/employee', (_, res) => res.sendFile(join(__dirname, 'public', 'employee', 'employee.html')));
 
 app.use('/', indexRouter);
 
