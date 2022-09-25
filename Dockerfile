@@ -4,4 +4,4 @@ WORKDIR /home/container
 COPY . .
 RUN yarn install --production
 
-CMD ["run.sh"]
+CMD ["/usr/bin/node", "backend/bin/www"]
