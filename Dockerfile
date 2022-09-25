@@ -6,4 +6,4 @@ RUN yarn install --production
 
 
 WORKDIR /home/container/backend
-CMD ["npm run start"]
+CMD ["run.sh"]
