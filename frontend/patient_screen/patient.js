@@ -12,8 +12,9 @@ function loadDoctor(roomID, array) {
         if (!data || data.length === 0) return;
         if (data[0].id == array[0]?.id) return;
         const firstDoc = data[0];
-        $('body > #docdata > p').append(`Doctor name: ${firstDoc.name}`);
-        $('body > #docdata> p1').append(`Doctor ID: ${firstDoc.id}`);
+        $('#docPic > div > div.col-md-8 > div > h5').text(firstDoc.name);
+        $('#docPic > div > div.col-md-8 > div > p:nth-child(2)').append(`Doctor ID: ${firstDoc.id}`);
+        // $('body > #docdata> p1').append(`Doctor ID: ${firstDoc.id}`);s
         $('#doctor-image').prepend(`<img src="/image?fileName=${firstDoc.pictureURL}" alt="Doctor image" />`);
         array.push(firstDoc);
         
