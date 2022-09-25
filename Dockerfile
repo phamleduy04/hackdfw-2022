@@ -4,4 +4,4 @@ WORKDIR /home/container
 COPY . .
 RUN yarn install --production
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
